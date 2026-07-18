@@ -18,10 +18,18 @@ which sits on the ground plane at z = 0).
 # UsdPhysics.FilteredPairsAPI, so the gripper can fully close while
 # enabled_self_collisions stays True everywhere else. Verified empirically: closure
 # reaches +0.0245 (vs. ~+0.0007 on the unpatched USD under self-collision). Original
-# (unpatched) asset under unitree_sim_isaaclab is untouched.
-ROBOT_USD = (
-    "/home/virtual-acc/projects/unitree_sim_isaaclab/assets/robots/"
-    "g1-29dof-dex1-base-fix-usd/g1_29dof_with_dex1_base_fix1_fingerfilter.usd"
+# (unpatched) asset lives under unitree_sim_isaaclab (a separate vendored repo) on
+# the machine this was developed on -- NOT bundled here since it's large and mostly
+# unrelated to this package. This TRANSFER repo instead bundles just the one 26MB
+# patched file this project actually needs, at assets/robots/..., resolved relative
+# to this file so it works regardless of where the repo is cloned (checked via USD's
+# own dependency resolver: this file is self-contained, no other external asset/
+# texture references beyond OmniPBR.mdl, which ships with Isaac Sim itself).
+import pathlib as _pathlib
+ROBOT_USD = str(
+    _pathlib.Path(__file__).resolve().parent.parent
+    / "assets" / "robots" / "g1-29dof-dex1-base-fix-usd"
+    / "g1_29dof_with_dex1_base_fix1_fingerfilter.usd"
 )
 
 # Base pose. rot is (w, x, y, z); this quaternion faces the robot toward -Y.

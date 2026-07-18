@@ -53,6 +53,15 @@ pip install -e .
 This registers the gym task IDs (`Isaac-G1-Lift-Ext-v0`, `Isaac-G1-Policy2/3/4-Ext-v0`, etc.)
 the same way it worked on the original machine.
 
+Nothing else to do for the robot asset -- on the original machine `ROBOT_USD`
+pointed into a separate vendored repo (`unitree_sim_isaaclab`) at a hardcoded
+absolute path, which wouldn't exist here. This repo instead bundles the one
+26MB patched USD file this project actually needs at `assets/robots/...`
+(verified self-contained -- no other external texture/reference dependencies
+besides `OmniPBR.mdl`, which ships with Isaac Sim itself), and
+`constants.py`'s `ROBOT_USD` resolves it relative to the package so it works
+regardless of where this repo is cloned.
+
 ## 3. Where things are
 
 - `g1_lift_rl/` — full source package (env configs, rewards, constants, agent configs).
