@@ -23,6 +23,25 @@ Notes:
   versions in requirements.txt (CUDA-related packages especially) may need
   adjusting — pip freeze captures exactly what was installed here, not
   necessarily what's compatible elsewhere.
+- `requirements.txt` includes `isaaclab`/`isaaclab_rl`/`isaaclab_tasks`/etc.
+  as `-e git+https://github.com/isaac-sim/IsaacLab.git@d94504bc...` (pinned
+  to the exact commit this project was built against) -- pip will clone and
+  install these automatically, BUT into an internal build location, not a
+  clean predictable directory. **Every training command in this project
+  assumes IsaacLab lives at a known path with `isaaclab.sh` and
+  `scripts/reinforcement_learning/rsl_rl/train.py` reachable in it.** Clone
+  it explicitly to get that:
+  ```bash
+  git clone https://github.com/isaac-sim/IsaacLab.git ~/projects/IsaacLab
+  cd ~/projects/IsaacLab
+  git checkout d94504bcf91cb7ab7ff956a2d48ecd1bca82797a   # exact commit used here
+  ```
+  After this, training commands look like (run from `g1_lift_ext_transfer/`,
+  with `env_isaaclab` activated):
+  ```bash
+  ~/projects/IsaacLab/isaaclab.sh -p ~/projects/IsaacLab/scripts/reinforcement_learning/rsl_rl/train.py \
+    --task Isaac-G1-Lift-Ext-v0 --headless
+  ```
 
 ## 2. Install the g1_lift_rl package
 
