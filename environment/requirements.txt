@@ -57,14 +57,6 @@ flatdict==4.1.0
 fonttools==4.55.3
 frozenlist==1.5.0
 fsspec==2024.6.1
-## !! Could not determine repository location
--e /home/virtual-acc/projects/g1_arm_manipulation
-## !! Could not determine repository location
--e /home/virtual-acc/projects/g1_lift_ext
-# Editable Git install with no remote (g1_pick_place==1.0.0)
--e /home/virtual-acc/projects/g1_pick_place
-## !! Could not determine repository location
--e /home/virtual-acc/projects/g1_redblock_ext
 gitdb==4.0.12
 GitPython==3.1.49
 grpcio==1.80.0
@@ -258,7 +250,6 @@ trimesh==4.5.1
 triton==3.3.0
 typing-inspection==0.4.2
 typing_extensions==4.12.2
--e git+https://github.com/unitreerobotics/unitree_rl_lab.git@4960b84732b0c2ec593dccbfe963fda1bcd7b1e3#egg=unitree_rl_lab&subdirectory=source/unitree_rl_lab
 urllib3==2.6.3
 uvicorn==0.29.0
 wandb==0.26.1
